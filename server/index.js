@@ -1,37 +1,19 @@
-// index.js (or your server entry file)
-const express = require('express');
-const mysql = require('mysql2');
+import express from 'express';
+import bodyParser from 'body-parser';
+import projectRoutes from './routes/projectRoutes.js';
+
 const app = express();
-const port = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
-// MySQL Connection
-const connection = mysql.createConnection({
-  host: 'localhost',  // MySQL host
-  user: 'root',       // MySQL username
-  password: 'password',   // MySQL password
-  database: 'my_database' // MySQL database name
-});
+// Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-connection.connect(err => {
-  if (err) {
-    console.error('Database connection failed: ' + err.stack);
-    return;
-  }
-  console.log('Connected to MySQL database');
-});
-
-// Example API route
-app.get('/api/users', (req, res) => {
-  connection.query('SELECT * FROM users', (error, results) => {
-    if (error) {
-      console.error('Error fetching users: ' + error.stack);
-      return res.status(500).json({ error: 'Database error' });
-    }
-    res.json(results);
-  });
-});
+// Routes
+app.use('/projects', projectRoutes);
+// Add more routes as needed
 
 // Start server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
