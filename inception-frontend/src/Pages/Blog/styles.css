@@ -6,7 +6,7 @@
     color: #333;
     text-decoration: none;
     font-size: 18px;
-    margin-left: 22%;
+    margin-left: 10%;
   }
 
   .blog-goBack:hover {
@@ -14,7 +14,7 @@
   }
   
   .blog-wrap {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
