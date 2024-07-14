@@ -32,7 +32,9 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-        <div className="md:w-[657px] w-full sm:h-[510px] h-[222px] bg-slate-200 rounded-[20px] shrink-0">
+        <div 
+            style={{backgroundImage: "url('https://res.cloudinary.com/dx0dgujbj/image/upload/v1707888470/CerviCare/Homepage/5_ukg3xj.png')", backgroundSize: "cover", backgroundPosition: "center"}}
+             className="md:w-[657px] w-full sm:h-[510px] h-[222px] bg-slate-200 rounded-[20px] shrink-0">
           {/* Add your image or any other content here */}
         </div>
       </div>
