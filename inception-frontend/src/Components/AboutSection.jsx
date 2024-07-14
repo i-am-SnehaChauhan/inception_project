@@ -5,7 +5,8 @@ const AboutSection = () => {
     <div className="bg-white py-20 px-4 md:px-10">
   <div className="container mx-auto flex flex-col md:flex-row items-center justify-center md:gap-10">
     <div className="md:w-1/2">
-    <div className=" w-full sm:h-[510px] h-[222px] bg-slate-200 rounded-[20px] shrink-0">
+    <div style={{backgroundImage: "url('https://res.cloudinary.com/dzfutdgpr/image/upload/v1720962416/yreview_pmg0ge.png')", backgroundSize: "cover", backgroundPosition: "center"}}
+             className=" w-full sm:h-[510px] h-[222px] bg-slate-200 rounded-[20px] shrink-0">
           {/* Add your image or any other content here */}
         </div>
     </div>
