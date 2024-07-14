@@ -62,7 +62,7 @@ const Product = () => {
           ))}
         </div>
 
-        <Link to={`products`}>
+        <Link to={`projects`}>
           <div className="flex items-center">
             <h2 className="w-[138px] underline font-semibold">
               View all products
