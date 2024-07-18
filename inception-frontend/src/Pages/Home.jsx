@@ -2,6 +2,8 @@ import React from 'react';
 import Navbar from '../Components/Navbar';
 import HeroSection from '../Components/HeroSection';
 import AboutSection from '../Components/AboutSection';
+import Product from '../Components/Product';
+import Footer from '../Components/Footer';
 
 export const Home = () => {
   return (
@@ -9,6 +11,8 @@ export const Home = () => {
       <Navbar />
       <HeroSection />
       <AboutSection />
+      <Product />
+      <Footer />
     </div>
   )
 }
