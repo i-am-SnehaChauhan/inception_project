@@ -1,54 +1,23 @@
-// import React, { useState } from 'react';
-// import axios from 'axios';
-
-// const Register = () => {
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [message, setMessage] = useState('');
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const res = await axios.post('http://localhost:3000/auth/register', { username, password });
-//       setMessage('User registered successfully');
-//     } catch (error) {
-//       setMessage('Error registering user');
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h2>Register</h2>
-//       {message && <p>{message}</p>}
-//       <form onSubmit={handleSubmit}>
-//         <div>
-//           <label>Username:</label>
-//           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
-//         </div>
-//         <div>
-//           <label>Password:</label>
-//           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-//         </div>
-//         <button type="submit">Register</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Register;
-
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { Link, useNavigate} from 'react-router-dom';
+import {message} from 'antd';
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle registration logic here
-    console.log('Registering with:', username, password);
-  };
+  const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          const res = await axios.post('http://localhost:3000/api/auth/register', { username, password });
+          message.success('User registered successfully');
+          navigate('/login');
+        } catch (error) {
+          message.error('Error registering user');
+        }
+      };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">

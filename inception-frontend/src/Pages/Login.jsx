@@ -1,14 +1,31 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { message } from 'antd';
+import axios from 'axios';
+
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Logging in with:', username, password);
+    try {
+      const res = await axios.post('http://localhost:3000/api/auth/login', { username, password });
+      localStorage.setItem('token', res.data.token);
+      message.success('User logged in successfully');
+      navigate('/');
+    } catch (error) {
+      if (error.response.status === 400) {
+        message.error('Invalid credentials');
+      } else {
+        message.error('Error logging in');
+      }
+    }
   };
 
   return (
@@ -19,8 +36,8 @@ const Login = () => {
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <input type="hidden" name="remember" defaultValue="true" />
-          <div className="rounded-md shadow-sm -space-y-px ">
-            <div className='mb-5 '>
+          <div className="rounded-md shadow-sm -space-y-px">
+            <div className='mb-5'>
               <label htmlFor="username" className="sr-only">
                 Username
               </label>
@@ -89,44 +106,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// import React, { useState } from 'react';
-// import axios from 'axios';
-
-// const Login = () => {
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [error, setError] = useState('');
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const res = await axios.post('http://localhost:3000/auth/login', { username, password });
-//       localStorage.setItem('token', res.data.token);
-//       setError('');
-//       // Redirect to a different page or update state as needed
-//     } catch (error) {
-//       setError('Invalid credentials');
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h2>Login</h2>
-//       {error && <p>{error}</p>}
-//       <form onSubmit={handleSubmit}>
-//         <div>
-//           <label>Username:</label>
-//           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
-//         </div>
-//         <div>
-//           <label>Password:</label>
-//           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-//         </div>
-//         <button type="submit">Login</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Login;
