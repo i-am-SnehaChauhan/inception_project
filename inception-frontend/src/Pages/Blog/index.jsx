@@ -51,6 +51,7 @@ const Blog = () => {
       {blog ? (
         <div className='blog-container'>
           <div className='blog-left'>
+            <h1 className='blog-title'>{blog.title}</h1>
             <img src={blog.cover} alt='cover' className='blog-cover' />
             <p className='blog-desc'>{blog.description}</p>
             <div className='blog-subCategory'>

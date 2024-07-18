@@ -1,10 +1,18 @@
 /* styles.css */
 .blog-container {
   display: grid;
-  grid-template-columns: 60% 40%;
-  width: 100vw;  /* Full screen width */
-  height: 100vh; /* Full screen height */
+  padding: 20px;
+  overflow: hidden;
+  grid-template-columns: 70% 30%;
+  height: 100%;
 }
+
+.blog-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+
 .blog-goBack {
     display: inline-block;
     margin-bottom: 20px;
